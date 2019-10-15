@@ -18,7 +18,7 @@ module.exports = {
     {
       resolve: '@campj/preview',
       options: {
-        herokuAppName: 'campj-preview-app', //will prompt user for name if ommitted
+        herokuAppName: 'cj-themes-dev', //will prompt user for name if ommitted
         previewSlug: 'preview' //defaults to 'preview' if ommitted
       }
     }
