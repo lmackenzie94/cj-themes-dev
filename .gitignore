@@ -1,0 +1,14 @@
+/_creative
+/.cache
+.cache
+node_modules
+yarn-error.log
+/node_modules
+# production
+/public
+/functions
+launch.json
+*.sketch
+links.json
+_data
+.env

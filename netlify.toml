@@ -1,0 +1,6 @@
+# Settings in the [build] context are global and are applied to all contexts 
+# unless otherwise overridden by more specific contexts.  
+[build]
+  publish = "site/public"
+  command = "cd site && yarn build"
+  environment = { NODE_VERSION = "10.6.0", YARN_VERSION = "1.9.4", RUBY_VERSION = "2.6.2" }

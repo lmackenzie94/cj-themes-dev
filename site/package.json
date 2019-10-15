@@ -1,0 +1,21 @@
+{
+  "name": "site",
+  "version": "1.0.2",
+  "main": "index.js",
+  "author": "Camp Jefferson",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby clean && gatsby develop"
+  },
+  "dependencies": {
+    "@campj/dato": "*",
+    "@campj/json": "*",
+    "@campj/preview": "*",
+    "@campj/theme": "^1.0.2",
+    "gatsby": "^2.15.16",
+    "lodash.merge": "^4.6.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}

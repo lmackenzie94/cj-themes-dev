@@ -1,0 +1,26 @@
+{
+  "name": "@campj/preview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Camp Jefferson",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby clean && gatsby develop"
+  },
+  "devDependencies": {
+    "gatsby": "^2.15.15",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.15.16",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "dependencies": {
+    "node-cmd": "^3.0.0",
+    "readline-sync": "^1.4.10"
+  },
+  "gitHead": "41d9dcf3fc35fe87b618f77ad4af76f6afaeacc8"
+}

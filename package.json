@@ -1,0 +1,22 @@
+{
+  "name": "cj-theme-workspace",
+  "private": true,
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "develop": "yarn workspace site develop",
+    "build": "yarn workspace site build",
+    "new-version": "lerna publish"
+  },
+  "workspaces": [
+    "site",
+    "theme",
+    "cj-theme-dato",
+    "cj-theme-json",
+    "cj-theme-preview"
+  ],
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  }
+}
