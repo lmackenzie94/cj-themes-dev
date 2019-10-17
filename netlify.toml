@@ -3,4 +3,4 @@
 [build]
   publish = "site/public"
   command = "cd site && yarn build"
-  environment = { NODE_VERSION = "10.6.0", YARN_VERSION = "1.9.4", RUBY_VERSION = "2.6.2" }
+  environment = { NODE_VERSION = "10.6.0", YARN_VERSION = "1.9.4", RUBY_VERSION = "2.6.2", DATO_API_TOKEN = "867984b424d191b440f0dd6c4e494d" }
