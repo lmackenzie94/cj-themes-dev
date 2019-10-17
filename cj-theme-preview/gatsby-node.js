@@ -1,20 +1,17 @@
 // const pjson = require(`./package.json`);
-const path = require(`path`);
+// const path = require(`path`);
 const fs = require(`fs`);
 const readlineSync = require(`readline-sync`);
 const cmd = require(`node-cmd`);
+
+const netlifyEnvVars = `environment = {DATO_API_TOKEN = "${process.env.DATO_API_TOKEN}"`;
+let herokuAppName;
 
 exports.onPreBootstrap = ({ reporter }, options) => {
   // ensures that a new heroku app isn't built when heroku does a build
   if (process.env.IS_HEROKU || process.env.IS_HEROKU === `true`) return;
 
-  // SHOULD PROBABLY CHANGE THIS
-  if (fs.existsSync(`./Procfile`)) return;
-  let herokuAppName;
-  function init() {
-    // the slug for the netlify URL that will redirect to the heroku app
-    const previewSlug = options.previewSlug ? options.previewSlug : `preview`;
-
+  function setHerokuAppName() {
     // if no herokuAppName was set in gatsby-config, prompt user for name.
     if (!options.herokuAppName) {
       herokuAppName = readlineSync.question(
@@ -23,6 +20,12 @@ exports.onPreBootstrap = ({ reporter }, options) => {
     } else {
       herokuAppName = options.herokuAppName;
     }
+    reporter.success(`Heroku app will be named ${herokuAppName}`);
+  }
+
+  function setupRedirect() {
+    // the slug for the netlify URL that will redirect to the heroku app
+    const previewSlug = options.previewSlug ? options.previewSlug : `preview`;
 
     // if no static folder exists, create it
     if (!fs.existsSync(`./static`)) {
@@ -64,11 +67,15 @@ exports.onPreBootstrap = ({ reporter }, options) => {
         }
       );
     }
+  }
 
+  function setupHerokuApp(oldName, newName) {
     // create the heroku app and required files (assumes user is logged in)
-    reporter.info(`NOW CREATING HEROKU APP...`);
+    reporter.info(`Setting up Heroku app...`);
     if (fs.existsSync(`./Procfile`)) {
-      reporter.warn(`Procfile already exists`);
+      reporter.warn(
+        `Procfile already exists. Make sure your heroku dyno is properly set`
+      );
     } else {
       fs.writeFileSync(
         `Procfile`,
@@ -79,27 +86,6 @@ exports.onPreBootstrap = ({ reporter }, options) => {
         }
       );
     }
-  }
-
-  let appInit = new Promise((resolve, reject) => {
-    cmd.get(
-      `
-        heroku create
-        `,
-      function(err, data) {
-        if (err) reject(err);
-        else {
-          let appName = data.substring(
-            data.lastIndexOf('/') + 1,
-            data.lastIndexOf('.git')
-          );
-          resolve(appName);
-        }
-      }
-    );
-  });
-
-  function setupHerokuApp(oldName, newName) {
     cmd.get(
       `
             heroku apps:rename ${newName} --app ${oldName}
@@ -111,16 +97,68 @@ exports.onPreBootstrap = ({ reporter }, options) => {
             `,
       function(err, data) {
         if (err) throw err;
-        else reporter.success(`changed heroku app name to ${newName}`);
+        else
+          reporter.success(
+            `Changed heroku app name to ${newName} and set all required environment variables`
+          );
       }
     );
   }
 
-  async function createHerokuApp(newAppName) {
+  async function createHerokuApp() {
+    let appInit = new Promise((resolve, reject) => {
+      cmd.get(
+        `
+        heroku create
+        `,
+        function(err, data) {
+          if (err) reject(err);
+          else {
+            let appName = data.substring(
+              data.lastIndexOf('/') + 1,
+              data.lastIndexOf('.git')
+            );
+            resolve(appName);
+            reporter.success(`Successfully created new Heroku app`);
+          }
+        }
+      );
+    });
     let oldAppName = await appInit;
-    setupHerokuApp(oldAppName, newAppName);
+    setupHerokuApp(oldAppName, herokuAppName);
   }
 
-  init();
-  createHerokuApp(herokuAppName);
+  function setNetlifyEnvVars() {
+    if (fs.existsSync(`./netlify.toml`)) {
+      let fileContent = fs.readFileSync(`./netlify.toml`, `utf8`);
+      if (fileContent.includes(`DATO_API_TOKEN`)) {
+        reporter.warn(
+          `Looks like you already have a DATO_API_TOKEN set up in your netlify.toml`
+        );
+      } else {
+        fs.appendFileSync(`./netlify.toml`, netlifyEnvVars, err => {
+          if (err) throw err;
+          reporter.success(
+            `Added Netlify environment variables to netlify.toml`
+          );
+        });
+      }
+    } else {
+      fs.writeFileSync(`./netlify.toml`, `[build] ${netlifyEnvVars}`, err => {
+        if (err) throw err;
+        reporter.success(
+          `Successfully created netlify.toml with necessary environment variables`
+        );
+      });
+    }
+  }
+
+  if (!fs.existsSync(`./Procfile`)) {
+    setHerokuAppName();
+    setupRedirect();
+    createHerokuApp();
+    setNetlifyEnvVars();
+  } else {
+    setNetlifyEnvVars();
+  }
 };

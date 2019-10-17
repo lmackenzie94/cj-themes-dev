@@ -16,7 +16,9 @@ if (
   if (fs.existsSync(`.env`)) {
     let fileContent = fs.readFileSync(`.env`, `utf8`);
     if (fileContent.includes(`DATO_API_TOKEN`)) {
-      console.log(`Looks like you already have a Dato API Token`);
+      console.log(
+        `Looks like you already have a Dato API Token set in your .env file`
+      );
     } else {
       DatoAPIToken = readlineSync.question(
         `Please enter your Dato API Token: `

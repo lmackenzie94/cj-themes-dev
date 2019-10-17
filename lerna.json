@@ -1,5 +1,5 @@
 {
-  "packages": ["cj-theme-dato", "cj-theme-json", "theme", "cj-theme-preview"],
+  "packages": ["theme", "cj-theme-dato", "cj-theme-json", "cj-theme-preview"],
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true
