@@ -1,5 +1,29 @@
+# @campj/json
+
+- Quickly setup JSON integration
+
+## Plugins this package provides:
+
+- gatsby-transformer-json
+- gatsby-source-filesystem
+
 ### Options
 
-**contentPath:** path of directory where your .json files live (default: 'data'; type: String)
+| Key         |  Type  | Default Value |                         Details                          |
+| ----------- | :----: | :-----------: | :------------------------------------------------------: |
+| langs       | Array  |    ['en']     |   A blank .json file will be created for each language   |
+| contentPath | String |    'data'     | Path of the directory where your .json files should live |
 
-**langs:** languages you want to support. A separate .json file will be created for each (default: ['en'], type: Array)
+### gatsby-config reference
+
+```javascript
+{
+    resolve: `gatsby-source-filesystem`,
+    options: {
+        name: `data`,
+        path: contentPath (see OPTIONS),
+        langs: langs (see OPTIONS),
+        ignore: [`**/\.*`] // ignore files starting with a dot
+    }
+}
+```

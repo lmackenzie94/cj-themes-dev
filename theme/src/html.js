@@ -7,7 +7,6 @@ export default class HTML extends React.Component {
     return (
       <html
         {...this.props.htmlAttributes}
-        lang={`en`}
         style={{ width: `100%`, padding: 0, margin: 0 }}
       >
         <head>

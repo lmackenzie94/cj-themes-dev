@@ -9,6 +9,7 @@
     "develop": "gatsby clean && gatsby develop"
   },
   "dependencies": {
+    "@campj/core": "*",
     "@campj/dato": "*",
     "@campj/json": "*",
     "@campj/preview": "*",

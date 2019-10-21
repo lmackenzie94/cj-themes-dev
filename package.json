@@ -14,7 +14,8 @@
     "theme",
     "cj-theme-dato",
     "cj-theme-json",
-    "cj-theme-preview"
+    "cj-theme-preview",
+    "cj-theme-core"
   ],
   "devDependencies": {
     "lerna": "^3.16.4"

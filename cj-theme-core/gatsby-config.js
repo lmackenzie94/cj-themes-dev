@@ -1,4 +1,4 @@
-const fonts = require('./src/utils/fonts').getFonts(`./static/fonts`).fonts;
+const fonts = require('@campj/utils/fonts')(`./static/fonts`).fonts;
 const fontsHeaders = fonts.map(
   ({ url, extension }) =>
     `Link: <${url}>; rel=preload; as=font; type=font/${extension}; crossorigin=anonymous`
@@ -7,7 +7,8 @@ const fontsHeaders = fonts.map(
 module.exports = ({
   analyticsEnabled = false,
   analyticsIds,
-  useNetlify = true
+  useNetlify = true,
+  host
 }) => {
   const plugins = [];
   const trackingIds = [analyticsIds];
@@ -21,7 +22,7 @@ module.exports = ({
       {
         resolve: `gatsby-plugin-robots-txt`,
         options: {
-          host: 'https://www.SITEURL.com',
+          host: host,
           env: {
             development: {
               policy: [{ userAgent: '*', disallow: ['/'] }]
@@ -60,9 +61,6 @@ module.exports = ({
 
   // SHARP
   plugins.push(`gatsby-plugin-sharp`, `gatsby-transformer-sharp`);
-
-  console.log(trackingIds);
-  console.log(plugins);
 
   return {
     plugins: plugins

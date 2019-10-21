@@ -4,7 +4,7 @@ const fs = require(`fs`);
 const readlineSync = require(`readline-sync`);
 const cmd = require(`node-cmd`);
 
-const netlifyEnvVars = `environment = {DATO_API_TOKEN = "${process.env.DATO_API_TOKEN}"`;
+const netlifyEnvVars = `environment = {DATO_API_TOKEN = "${process.env.DATO_API_TOKEN}"}`;
 let herokuAppName;
 
 exports.onPreBootstrap = ({ reporter }, options) => {
@@ -132,24 +132,35 @@ exports.onPreBootstrap = ({ reporter }, options) => {
     if (fs.existsSync(`./netlify.toml`)) {
       let fileContent = fs.readFileSync(`./netlify.toml`, `utf8`);
       if (fileContent.includes(`DATO_API_TOKEN`)) {
-        reporter.warn(
+        reporter.info(
           `Looks like you already have a DATO_API_TOKEN set up in your netlify.toml`
         );
       } else {
-        fs.appendFileSync(`./netlify.toml`, netlifyEnvVars, err => {
-          if (err) throw err;
-          reporter.success(
-            `Added Netlify environment variables to netlify.toml`
-          );
-        });
+        if (process.env.DATO_API_TOKEN) {
+          fs.appendFileSync(`./netlify.toml`, netlifyEnvVars, err => {
+            if (err) throw err;
+            reporter.success(
+              `Added Netlify environment variables to netlify.toml`
+            );
+            reporter.warn(
+              `If you had previously set environment variables, make sure you combine them into one 'environment' object`
+            );
+          });
+        } else {
+          reporter.error(`Please add your DATO_API_TOKEN to your .env file`);
+        }
       }
     } else {
-      fs.writeFileSync(`./netlify.toml`, `[build] ${netlifyEnvVars}`, err => {
-        if (err) throw err;
-        reporter.success(
-          `Successfully created netlify.toml with necessary environment variables`
-        );
-      });
+      if (process.env.DATO_API_TOKEN) {
+        fs.writeFileSync(`./netlify.toml`, `[build] ${netlifyEnvVars}`, err => {
+          if (err) throw err;
+          reporter.success(
+            `Successfully created netlify.toml with necessary environment variables`
+          );
+        });
+      } else {
+        reporter.error(`Please add your DATO_API_TOKEN to your .env file`);
+      }
     }
   }
 

@@ -40,6 +40,7 @@ if (
 module.exports = () => {
   return {
     plugins: [
+      // DELETE??
       `gatsby-transformer-remark`,
       {
         resolve: `gatsby-source-datocms`,
