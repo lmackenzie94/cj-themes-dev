@@ -1,4 +1,4 @@
-module.exports = ({ contentPath = 'data', langs = ['en'] }) => ({
+module.exports = ({ contentPath = `src/data`, langs = [`en`] }) => ({
   plugins: [
     `gatsby-transformer-json`,
     {

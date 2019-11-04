@@ -6,6 +6,7 @@
 ## Plugins this package provides:
 
 - gatsby-source-datocms
+- gatsby-transformer-remark
 
 ### Options
 

@@ -12,3 +12,7 @@
 | herokuAppName | String |                            | Can't contain spaces or capital letters <br> If ommitted, terminal will prompt user for a name |
 | previewSlug   | String |         'preview'          |                               Used to redirect to the Heroku app                               |
 | datoAPIToken  | String | process.env.DATO_API_TOKEN |                   **Required** if DATO_API_TOKEN is not defined in .env file                   |
+
+### Important Note
+
+- A Procfile is created when you first start your site after configuring this theme in your plugins. To prevent the creation of a new Heroku app every time you start your site, make sure you do NOT delete the Procfile.

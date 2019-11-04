@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "Camp Jefferson",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby clean && gatsby develop"

@@ -1,6 +1,6 @@
 {
   "name": "@campj/core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "author": "Camp Jefferson",
   "license": "MIT",
@@ -20,11 +20,14 @@
   },
   "dependencies": {
     "@campj/utils": "^1.0.13",
+    "gatsby-plugin-catch-links": "^2.1.15",
     "gatsby-plugin-google-gtag": "^1.1.14",
     "gatsby-plugin-netlify": "^2.1.22",
     "gatsby-plugin-netlify-cache": "^1.2.0",
+    "gatsby-plugin-react-helmet": "^3.1.13",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.2.32",
+    "gatsby-plugin-sitemap": "^2.2.19",
     "gatsby-plugin-theme-ui": "^0.2.43",
     "gatsby-transformer-sharp": "^2.2.23"
   }

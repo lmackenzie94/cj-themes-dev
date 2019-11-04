@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 exports.onPreBootstrap = ({ reporter }, options) => {
-  const contentPath = options.contentPath || 'data';
+  const contentPath = options.contentPath || 'src/data';
   const langs = options.langs || ['en'];
 
   if (!fs.existsSync(contentPath)) {

@@ -12,10 +12,10 @@
   "workspaces": [
     "site",
     "theme",
+    "cj-theme-core",
     "cj-theme-dato",
     "cj-theme-json",
-    "cj-theme-preview",
-    "cj-theme-core"
+    "cj-theme-preview"
   ],
   "devDependencies": {
     "lerna": "^3.16.4"

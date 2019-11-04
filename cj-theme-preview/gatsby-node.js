@@ -143,7 +143,7 @@ exports.onPreBootstrap = ({ reporter }, options) => {
               `Added Netlify environment variables to netlify.toml`
             );
             reporter.warn(
-              `If you had previously set environment variables, make sure you combine them into one 'environment' object`
+              `If you had previously set Netlify environment variables, make sure you combine them into one 'environment' object`
             );
           });
         } else {

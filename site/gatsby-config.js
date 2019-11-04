@@ -1,29 +1,29 @@
 module.exports = {
   plugins: [
     {
-      resolve: '@campj/theme',
+      resolve: `@campj/theme`,
       options: {}
     },
     {
-      resolve: '@campj/json',
+      resolve: `@campj/json`,
       options: {
-        contentPath: 'luke',
-        langs: ['en', 'fr']
+        contentPath: `src/data`,
+        langs: [`en`, `fr`]
       }
     },
     {
-      resolve: '@campj/dato',
+      resolve: `@campj/dato`,
       options: {}
     },
     {
-      resolve: '@campj/preview',
+      resolve: `@campj/preview`,
       options: {
-        herokuAppName: 'cj-themes-dev', //will prompt user for name if ommitted
-        previewSlug: 'preview' //defaults to 'preview' if ommitted
+        herokuAppName: `cj-themes-dev`, //will prompt user for name if ommitted
+        previewSlug: `preview` //defaults to `preview` if ommitted
       }
     },
     {
-      resolve: '@campj/core',
+      resolve: `@campj/core`,
       options: {
         analyticsEnabled: false,
         useNetlify: true,
