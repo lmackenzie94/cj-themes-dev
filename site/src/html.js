@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFonts } from 'utils/fonts';
+import getFonts from '@campj/utils/fonts';
 const { families } = getFonts(`./static/fonts`);
 
 export default class HTML extends React.Component {

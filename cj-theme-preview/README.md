@@ -15,4 +15,9 @@
 
 ### Important Note
 
+- After this plugins runs, be sure to commit. Then, run <code>git push heroku master</code> to deploy.
 - A Procfile is created when you first start your site after configuring this theme in your plugins. To prevent the creation of a new Heroku app every time you start your site, make sure you do NOT delete the Procfile.
+
+#### NEED TO DO:
+
+- add env vars to root netlify.toml if 'site' and 'studio' are in the same repo (otherwise netlify build won't work)

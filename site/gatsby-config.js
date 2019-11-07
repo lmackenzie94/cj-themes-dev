@@ -1,14 +1,11 @@
 module.exports = {
   plugins: [
     {
-      resolve: `@campj/theme`,
-      options: {}
-    },
-    {
       resolve: `@campj/json`,
       options: {
-        contentPath: `src/data`,
-        langs: [`en`, `fr`]
+        dataPath: `src/data`,
+        imagePath: `src/img`
+        // useImage: false
       }
     },
     {
@@ -18,8 +15,8 @@ module.exports = {
     {
       resolve: `@campj/preview`,
       options: {
-        herokuAppName: `cj-themes-dev`, //will prompt user for name if ommitted
-        previewSlug: `preview` //defaults to `preview` if ommitted
+        herokuAppName: `cj-themes-dev`, // will prompt user for name if ommitted
+        previewSlug: `preview` // defaults to `preview` if ommitted
       }
     },
     {

@@ -5,6 +5,7 @@ require('dotenv').config();
 const fs = require('fs');
 const readlineSync = require(`readline-sync`);
 const isProduction = process.env.NODE_ENV === `production`;
+const chalk = require('chalk');
 
 let DatoAPIToken = process.env.DATO_API_TOKEN;
 
@@ -17,23 +18,35 @@ if (
     let fileContent = fs.readFileSync(`.env`, `utf8`);
     if (fileContent.includes(`DATO_API_TOKEN`)) {
       console.log(
-        `Looks like you already have a Dato API Token set in your .env file`
+        chalk.yellow.bold(
+          `@campj/dato: Looks like you already have a Dato API Token set in your .env file`
+        )
       );
     } else {
       DatoAPIToken = readlineSync.question(
-        `Please enter your Dato API Token: `
+        chalk.blue.bold(`@campj/dato: Please enter your Dato API Token: `)
       );
       fs.appendFileSync(`.env`, `DATO_API_TOKEN=${DatoAPIToken}`, err => {
         if (err) throw err;
       });
-      console.log(`Added your Dato API Token to the existing .env file`);
+      console.log(
+        chalk.green.bold(
+          `@campj/dato: Added your Dato API Token to the existing .env file`
+        )
+      );
     }
   } else {
-    DatoAPIToken = readlineSync.question(`Please enter your Dato API Token: `);
+    DatoAPIToken = readlineSync.question(
+      chalk.blue.bold(`@campj/dato: Please enter your Dato API Token: `)
+    );
     fs.writeFileSync(`.env`, `DATO_API_TOKEN=${DatoAPIToken}`, err => {
       if (err) throw err;
     });
-    console.log(`Created a .env file and added your Dato API Token`);
+    console.log(
+      chalk.green.bold(
+        `@campj/dato: Created a .env file and added your Dato API Token`
+      )
+    );
   }
 }
 

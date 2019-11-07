@@ -9,10 +9,13 @@
 
 ### Options
 
-| Key         |  Type  | Default Value |                         Details                          |
-| ----------- | :----: | :-----------: | :------------------------------------------------------: |
-| langs       | Array  |    ['en']     |   A blank .json file will be created for each language   |
-| contentPath | String |    'data'     | Path of the directory where your .json files should live |
+| Key       |  Type   | Default Value |                           Details                           |
+| --------- | :-----: | :-----------: | :---------------------------------------------------------: |
+| langs     |  Array  |    ['en']     |    A blank .json file will be created for each language     |
+| dataPath  | String  |  'src/data'   |  Path of the directory where your .json files should live   |
+| imagePath | String  |   'src/img'   |  Path of the directory where your image files should live   |
+| useData   | Boolean |     true      | Set to false if you don't want a data folder to be created  |
+| useImage  | Boolean |     true      | Set to false if you don't want a image folder to be created |
 
 ### gatsby-config reference
 
@@ -21,8 +24,15 @@
     resolve: `gatsby-source-filesystem`,
     options: {
         name: `data`,
-        path: contentPath (see OPTIONS),
-        langs: langs (see OPTIONS),
+        path: dataPath (see OPTIONS),
+        ignore: [`**/\.*`] // ignore files starting with a dot
+    }
+},
+{
+    resolve: `gatsby-source-filesystem`,
+    options: {
+        name: `image`,
+        path: imagePath (see OPTIONS),
         ignore: [`**/\.*`] // ignore files starting with a dot
     }
 }

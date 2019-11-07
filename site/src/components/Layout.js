@@ -11,7 +11,7 @@ import Helmet from 'react-helmet';
 import { Global, css } from '@emotion/core';
 import { motion } from 'framer-motion';
 import { withTheme } from 'emotion-theming';
-import NetworkDetectorWithTheme from 'utils/networkDetectorWithTheme';
+// import NetworkDetectorWithTheme from 'utils/networkDetectorWithTheme';
 
 // css to be injected into global styles
 import minireset from '!!raw-loader!css/minireset.css';
@@ -118,7 +118,7 @@ function Layout({ location, children, theme, data }) {
           }
         `}
       />
-      <NetworkDetectorWithTheme />
+      {/* <NetworkDetectorWithTheme /> */}
       <Header />
       <main sx={{ position: `relative`, width: `100%`, mb: [30, 40, 50] }}>
         {page}

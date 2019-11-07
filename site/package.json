@@ -14,10 +14,22 @@
     "@campj/dato": "*",
     "@campj/json": "*",
     "@campj/preview": "*",
-    "@campj/theme": "^1.0.2",
+    "@campj/utils": "^1.0.14",
     "gatsby": "^2.15.16",
     "lodash.merge": "^4.6.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "@babel/polyfill": "^7.6.0",
+    "@emotion/core": "^10.0.17",
+    "@mdx-js/react": "^1.4.5",
+    "emotion-theming": "^10.0.18",
+    "framer-motion": "^1.6.7",
+    "intersection-observer": "^0.7.0",
+    "object-fit-images": "^3.2.4",
+    "polished": "^3.4.1",
+    "react-helmet": "^5.2.1",
+    "react-spring": "^8.0.27",
+    "theme-ui": "^0.2.42",
+    "zustand": "^1.0.7"
   }
 }

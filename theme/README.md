@@ -1,1 +1,0 @@
-# CJ Gatsby Theme
