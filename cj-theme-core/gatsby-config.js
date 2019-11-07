@@ -8,7 +8,8 @@ module.exports = ({
   analyticsEnabled = false,
   analyticsIds,
   useNetlify = true,
-  host
+  host,
+  siteMetadata
 }) => {
   const plugins = [];
   const trackingIds = [analyticsIds];
@@ -63,9 +64,14 @@ module.exports = ({
   plugins.push(`gatsby-plugin-sharp`, `gatsby-transformer-sharp`);
 
   // OTHER
-  plugins.push(`gatsby-plugin-react-helmet`, `gatsby-plugin-catch-links`);
+  plugins.push(
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-catch-links`
+  );
 
   return {
+    siteMetadata: siteMetadata,
     plugins: plugins
   };
 };

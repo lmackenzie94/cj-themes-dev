@@ -173,7 +173,7 @@ exports.onPreBootstrap = (_, options) => {
       let fileContent = fs.readFileSync(`./netlify.toml`, `utf8`);
       if (fileContent.includes(`DATO_API_TOKEN`)) {
         console.log(
-          chalk.green.bold(
+          chalk.yellow.bold(
             `@campj/preview: Looks like you already have a DATO_API_TOKEN set up in your netlify.toml`
           )
         );
