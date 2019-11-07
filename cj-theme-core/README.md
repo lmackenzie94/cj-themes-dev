@@ -11,7 +11,6 @@
 - gatsby-plugin-netlify-cache
 - gatsby-plugin-sharp
 - gatsby-transformer-sharp
-- gatsby-plugin-sitemap
 - gatsby-plugin-react-helmet
 - gatsby-plugin-catch-links
 

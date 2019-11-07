@@ -1,5 +1,11 @@
 module.exports = {
+  siteMetadata: {
+    siteUrl: `https://cj-themes-dev.netlify.com`,
+    title: `cj-themes-dev`,
+    description: `Repo for developing CJ Gatsby themes`
+  },
   plugins: [
+    `gatsby-plugin-sitemap`,
     {
       resolve: `@campj/json`,
       options: {
