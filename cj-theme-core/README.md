@@ -17,16 +17,28 @@
 
 ### Options
 
-| Key              |     Type     | Default Value |                                          Details                                           |
-| ---------------- | :----------: | :-----------: | :----------------------------------------------------------------------------------------: |
-| analyticsEnabled |   Boolean    |     false     |                                                                                            |
-| analyticsIds     |    String    |               | **Required** if 'analyticsEnabled' is set to true <br> Accepts multiple (common separated) |
-| host             | String (URL) |               |                     **Required** if 'analyticsEnabled' is set to true                      |
-| useNetlify       |   Boolean    |     true      |                                                                                            |
+| Key              |     Type     | Default Value |                                                                             Details                                                                              |
+| ---------------- | :----------: | :-----------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| analyticsEnabled |   Boolean    |     false     |                                                   If set to **true**, you must pass a <code>host</code> option                                                   |
+| analyticsIds     |    String    |               |                                    **Required** if 'analyticsEnabled' is set to true <br> Accepts multiple (common separated)                                    |
+| host             | String (URL) |               |                                                        **Required** if 'analyticsEnabled' is set to true                                                         |
+| useNetlify       |   Boolean    |     true      |                                                                                                                                                                  |
+| siteMapConfig    |    Object    |               | A 'siteMetadata' object with key 'siteUrl' and a value of your site's URL is **required** <br> Takes an optional 'pluginOptions' object to customize as you like |
 
-##### <code>analyticsEnabled</code> (Boolean)
+### siteMapConfig (example)
 
-- If set to **true**, also pass a <code>host</code> option
+```javascript
+ siteMapConfig: {
+    siteMetadata: {
+        siteUrl: `https://example.com`, // required
+        title: `cj-example`,
+    }
+    // optional
+    pluginOptions: {
+      output: `/some-other-sitemap.xml`,
+    }
+}
+```
 
 ### gatsby-config reference
 
@@ -67,4 +79,8 @@ const fontsHeaders = fonts.map(
         allPageHeaders: [...fontsHeaders]
     }
 },
+{
+    resolve: `gatsby-plugin-sitemap`,
+    options: siteMapConfig.pluginOptions (see OPTIONS)
+}
 ```

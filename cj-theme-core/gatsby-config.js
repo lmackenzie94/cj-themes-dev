@@ -9,7 +9,7 @@ module.exports = ({
   analyticsIds,
   useNetlify = true,
   host,
-  siteMetadata
+  siteMapConfig
 }) => {
   const plugins = [];
   const trackingIds = [analyticsIds];
@@ -60,18 +60,34 @@ module.exports = ({
     );
   }
 
+  // SITE MAP
+  if (!siteMapConfig.siteMetadata.siteUrl) {
+    let error = `@campj/core: Please add your 'siteUrl' as a key on the 'siteMetadata' object within 'siteMapConfig'. See @campj/core docs for an example.`;
+    throw error;
+  }
+  let siteMapMetadata;
+  if (siteMapConfig.siteMetadata) {
+    siteMapMetadata = siteMapConfig.siteMetadata;
+  }
+  if (siteMapConfig.pluginOptions) {
+    plugins.push({
+      resolve: `gatsby-plugin-sitemap`,
+      options: siteMapConfig.pluginOptions
+    });
+  } else {
+    plugins.push(`gatsby-plugin-sitemap`);
+  }
+
   // SHARP
   plugins.push(`gatsby-plugin-sharp`, `gatsby-transformer-sharp`);
 
   // OTHER
-  plugins.push(
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-catch-links`
-  );
+  plugins.push(`gatsby-plugin-react-helmet`, `gatsby-plugin-catch-links`);
 
+  console.log(siteMapMetadata);
+  console.log(plugins);
   return {
-    siteMetadata: siteMetadata,
+    siteMetadata: siteMapMetadata,
     plugins: plugins
   };
 };

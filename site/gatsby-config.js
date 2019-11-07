@@ -26,10 +26,15 @@ module.exports = {
         useNetlify: true,
         analyticsIds: `12345`,
         host: `https://www.TESTING.com`,
-        siteMetadata: {
-          siteUrl: `https://cj-themes-dev.netlify.com`,
-          title: `cj-themes-dev`,
-          description: `Repo for developing CJ Gatsby themes`
+        siteMapConfig: {
+          siteMetadata: {
+            siteUrl: `https://cj-themes-dev.netlify.com`,
+            title: `cj-themes-dev`,
+            description: `Repo for developing CJ Gatsby themes`
+          }
+          // pluginOptions: {
+          //   test: 'hey'
+          // }
         }
       }
     }
