@@ -6,14 +6,17 @@ const cmd = require(`node-cmd`);
 const chalk = require('chalk');
 
 let herokuAppName;
+let error;
 
 exports.onPreBootstrap = (_, options) => {
   if (!process.env.DATO_API_TOKEN && !options.datoAPIToken) {
-    console.log(
-      chalk.red.bold(
-        `@campj/preview: Please add a "DATO_API_TOKEN" to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`
-      )
-    );
+    error = `@campj/preview: Please add a "DATO_API_TOKEN" to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`;
+    throw error;
+    // console.log(
+    //   chalk.red.bold(
+    //     `@campj/preview: Please add a "DATO_API_TOKEN" to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`
+    //   )
+    // );
   }
   const datoAPIToken = options.datoAPIToken
     ? options.datoAPIToken
@@ -61,11 +64,13 @@ exports.onPreBootstrap = (_, options) => {
     if (fs.existsSync(`./static/_redirects`)) {
       let fileContent = fs.readFileSync(`./static/_redirects`, `utf8`);
       if (fileContent.includes(`herokuapp`)) {
-        console.log(
-          chalk.red.bold(
-            `@campj/preview: Looks like you already have a heroku redirect set up. Check 'static/_redirects'`
-          )
-        );
+        error = `@campj/preview: Looks like you already have a heroku redirect set up. Check 'static/_redirects'`;
+        throw error;
+        // console.log(
+        //   chalk.red.bold(
+        //     `@campj/preview: Looks like you already have a heroku redirect set up. Check 'static/_redirects'`
+        //   )
+        // );
       } else {
         fs.appendFileSync(
           `./static/_redirects`,
@@ -104,11 +109,13 @@ exports.onPreBootstrap = (_, options) => {
       chalk.green.bold(`@campj/preview: Setting up Heroku app. Please wait...`)
     );
     if (fs.existsSync(`./Procfile`)) {
-      console.log(
-        chalk.red.bold(
-          `@campj/preview: Procfile already exists. Make sure your heroku dyno is properly set.`
-        )
-      );
+      error = `@campj/preview: Procfile already exists. Make sure your heroku dyno is properly set.`;
+      throw error;
+      // console.log(
+      //   chalk.red.bold(
+      //     `@campj/preview: Procfile already exists. Make sure your heroku dyno is properly set.`
+      //   )
+      // );
     } else {
       fs.writeFileSync(
         `Procfile`,
@@ -193,11 +200,13 @@ exports.onPreBootstrap = (_, options) => {
             );
           });
         } else {
-          console.log(
-            chalk.red.bold(
-              `@campj/preview: Please add your DATO_API_TOKEN to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`
-            )
-          );
+          error = `@campj/preview: Please add your DATO_API_TOKEN to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`;
+          throw error;
+          // console.log(
+          //   chalk.red.bold(
+          //     `@campj/preview: Please add your DATO_API_TOKEN to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`
+          //   )
+          // );
         }
       }
     } else {
@@ -211,11 +220,13 @@ exports.onPreBootstrap = (_, options) => {
           );
         });
       } else {
-        console.log(
-          chalk.red.bold(
-            `@campj/preview: Please add your DATO_API_TOKEN to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`
-          )
-        );
+        error = `@campj/preview: Please add your DATO_API_TOKEN to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`;
+        throw error;
+        // console.log(
+        //   chalk.red.bold(
+        //     `@campj/preview: Please add your DATO_API_TOKEN to your .env file OR add "datoAPIToken" as an option of this plugin in your gatsby-config`
+        //   )
+        // );
       }
     }
   }

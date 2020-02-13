@@ -84,8 +84,6 @@ module.exports = ({
   // OTHER
   plugins.push(`gatsby-plugin-react-helmet`, `gatsby-plugin-catch-links`);
 
-  console.log(siteMapMetadata);
-  console.log(plugins);
   return {
     siteMetadata: siteMapMetadata,
     plugins: plugins

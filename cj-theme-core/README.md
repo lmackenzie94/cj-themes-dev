@@ -2,7 +2,7 @@
 
 - Quickly setup & configure commonly used Gatsby plugins
 
-## Plugins this package provides:
+### Plugins this package provides:
 
 - gatsby-plugin-theme-ui
 - gatsby-plugin-robots-txt

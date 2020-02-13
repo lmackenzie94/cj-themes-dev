@@ -3,7 +3,7 @@
 - Quickly setup DatoCMS integration
 - If no .env file exists, user will be prompted to enter a Dato API Token and a new .env file will automatically be created
 
-## Plugins this package provides:
+### Plugins this package provides:
 
 - gatsby-source-datocms
 - gatsby-transformer-remark

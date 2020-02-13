@@ -2,7 +2,7 @@
 
 - Quickly setup JSON integration
 
-## Plugins this package provides:
+### Plugins this package provides:
 
 - gatsby-transformer-json
 - gatsby-source-filesystem
