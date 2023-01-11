@@ -21,7 +21,7 @@
   "dependencies": {
     "dotenv": "^8.1.0",
     "gatsby-source-datocms": "^2.1.15",
-    "gatsby-transformer-remark": "^2.6.22"
+    "gatsby-transformer-remark": "^5.25.1"
   },
   "gitHead": "41d9dcf3fc35fe87b618f77ad4af76f6afaeacc8"
 }
